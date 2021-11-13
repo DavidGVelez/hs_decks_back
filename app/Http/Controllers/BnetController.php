@@ -2,8 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Helpers\QueryHelper;
-use Illuminate\Http\Request;
+use App\Helpers\CommonHelper;
 
 class BnetController extends Controller
 {
@@ -12,7 +11,7 @@ class BnetController extends Controller
 
     public function __construct()
     {
-        $this->helper = new QueryHelper;
+        $this->helper = new CommonHelper;
     }
 
     public function refresh_access_token()
@@ -23,8 +22,6 @@ class BnetController extends Controller
         curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
         curl_setopt($ch, CURLOPT_POST, 1);
         curl_setopt($ch, CURLOPT_USERPWD, env('BATTLENET_CLIENT_ID') . ":" . env('BATTLENET_CLIENT_SECRET'));
-
-        // curl_setopt($ch, CURLOPT_POSTFIELDS, ['_token' => csrf_token()]);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
         $response = curl_exec($ch);
@@ -34,6 +31,10 @@ class BnetController extends Controller
             return $error;
         }
 
-        return json_decode($response);
+        $response = json_decode($response);
+
+        $this->helper->envUpdate('BATTLENET_ACCESS_TOKEN', $response);
+
+        return $response;
     }
 }

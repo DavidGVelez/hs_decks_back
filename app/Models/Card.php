@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Helpers\QueryHelper;
+use App\Helpers\CommonHelper;
 
 class Card
 {
@@ -12,7 +12,7 @@ class Card
 
     public function __construct()
     {
-        self::$helper = new QueryHelper();
+        self::$helper = new CommonHelper();
     }
 
     public static function find($id)
