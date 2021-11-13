@@ -28,6 +28,10 @@ class Card
         $response = curl_exec($ch);
         curl_close($ch);
 
+        if ($error = self::$helper->show_error(curl_getinfo($ch, CURLINFO_HTTP_CODE))) {
+            return $error;
+        }
+
         return json_decode($response);
     }
 
@@ -47,6 +51,7 @@ class Card
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
         $response = curl_exec($ch);
+
         curl_close($ch);
 
         return json_decode($response);
