@@ -16,12 +16,12 @@ class CardController extends Controller
     }
 
 
-    public function findOne($id)
+    public function find_one($id)
     {
         return $this->repository->findOneById($id);
     }
 
-    public function findAll()
+    public function find_all()
     {
         return $this->repository->findAll();
     }

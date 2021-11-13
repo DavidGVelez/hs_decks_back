@@ -43,7 +43,6 @@ class Card
             self::$endpoint .=  self::$helper->filters(request()->all());
         }
 
-
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json', env('BATTLENET_ACCESS_TOKEN')));
         curl_setopt($ch, CURLOPT_URL,  self::$endpoint);

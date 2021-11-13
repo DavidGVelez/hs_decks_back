@@ -33,7 +33,7 @@ class BnetController extends Controller
 
         $response = json_decode($response);
 
-        $this->helper->envUpdate('BATTLENET_ACCESS_TOKEN', $response);
+        $this->helper->env_update('BATTLENET_ACCESS_TOKEN', $response);
 
         return $response;
     }

@@ -56,7 +56,7 @@ class CommonHelper
      * 
      * @return void
      */
-    public static function envUpdate($key, $value)
+    public static function env_update($key, $value)
     {
         $path = base_path('.env');
 

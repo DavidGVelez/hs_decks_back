@@ -22,7 +22,7 @@ Route::group(['prefix' => '/bnet'], function () {
 
 Route::group(['prefix' => '/cards'], function () {
 
-    Route::get('/', 'CardController@findAll');
+    Route::get('/', 'CardController@find_all');
 
-    Route::get('/{idOrSlug}', 'CardController@findOne');
+    Route::get('/{idOrSlug}', 'CardController@find_one');
 });
