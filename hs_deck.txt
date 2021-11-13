@@ -1,0 +1,26 @@
+### Even Shaman - Standard Meta Snapshot - May 18, 2018
+# Class: Shaman
+# Format: Standard
+# Year of the Raven
+#
+# 1x (2) Acidic Swamp Ooze
+# 2x (2) Dire Wolf Alpha
+# 2x (2) Earthen Might
+# 2x (2) Flametongue Totem
+# 2x (2) Knife Juggler
+# 2x (2) Murkspark Eel
+# 2x (2) Primalfin Totem
+# 2x (2) Vicious Scalehide
+# 2x (4) Corpsetaker
+# 2x (4) Hex
+# 2x (4) Saronite Chain Gang
+# 2x (6) Argent Commander
+# 1x (6) Fire Elemental
+# 1x (6) Genn Greymane
+# 1x (8) Al'Akir the Windlord
+# 1x (8) Hagatha the Witch
+# 1x (8) The Lich King
+# 2x (10) Sea Giant
+#
+AAECAfe5AgaKB70BzfQCIKfuAsLOAgzZB7DwAvAHsQiU7wKRwQL27AKW6AL+BZvLApkC0wEA #
+# To use this deck, copy it to your clipboard and create a new deck in Hearthstone
