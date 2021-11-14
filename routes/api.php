@@ -14,6 +14,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/', function () {
+    dd('testing');
+});
+
 Route::group(['prefix' => '/bnet'], function () {
 
     Route::get('/token/refresh', 'BnetController@refresh_access_token');
