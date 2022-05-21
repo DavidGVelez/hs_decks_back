@@ -25,4 +25,11 @@ Route::prefix('bnet')->middleware('bnet')->group(function () {
 
         Route::get('/{idOrSlug}', 'CardController@find_one');
     });
+
+    Route::group(['prefix' => '/cardbacks'], function () {
+
+        Route::get('/', 'CardbackController@find_all');
+
+        Route::get('/{idOrSlug}', 'CardbackController@find_one');
+    });
 });
