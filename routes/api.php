@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,19 +13,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    dd('testing');
+Route::get('/ping', function () {
+    return response()->json('Pong', 200);
 });
 
-Route::group(['prefix' => '/bnet'], function () {
+Route::prefix('bnet')->middleware('bnet')->group(function () {
 
-    Route::get('/token/refresh', 'BnetController@refresh_access_token');
-});
+    Route::group(['prefix' => '/cards'], function () {
 
+        Route::get('/', 'CardController@find_all');
 
-Route::group(['prefix' => '/cards'], function () {
-
-    Route::get('/', 'CardController@find_all');
-
-    Route::get('/{idOrSlug}', 'CardController@find_one');
+        Route::get('/{idOrSlug}', 'CardController@find_one');
+    });
 });
