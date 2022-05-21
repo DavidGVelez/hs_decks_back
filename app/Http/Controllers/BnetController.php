@@ -2,39 +2,32 @@
 
 namespace App\Http\Controllers;
 
-use App\Helpers\CommonHelper;
+use App\Services\BnetService;
+use Exception;
+use Illuminate\Support\Facades\Log;
 
 class BnetController extends Controller
 {
 
-    protected $helper;
+    protected $bnetService;
 
-    public function __construct()
+    public function __construct(BnetService $bnetService)
     {
-        $this->helper = new CommonHelper;
+        $this->bnetService = $bnetService;
     }
+
 
     public function refresh_access_token()
     {
-        $ch = curl_init();
+        try {
+            Log::info('BnetController', ['message' => 'Trying to get token']);
+            // Refresh token
+            $this->bnetService->refreshToken();
 
-        curl_setopt($ch, CURLOPT_URL,  "https://us.battle.net/oauth/token?grant_type=client_credentials");
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
-        curl_setopt($ch, CURLOPT_POST, 1);
-        curl_setopt($ch, CURLOPT_USERPWD, env('BATTLENET_CLIENT_ID') . ":" . env('BATTLENET_CLIENT_SECRET'));
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-
-        $response = curl_exec($ch);
-        curl_close($ch);
-
-        if ($error = $this->helper->show_error(curl_getinfo($ch, CURLINFO_HTTP_CODE))) {
-            return $error;
+            return response()->setStatusCode('200');
+        } catch (Exception $e) {
+            Log::error('BnetController', ['message' => 'Error retrieving Bnet token', 'error' => $e]);
+            return response()->setStatusCode('400');
         }
-
-        $response = json_decode($response);
-
-        $this->helper->env_update('BATTLENET_ACCESS_TOKEN', $response);
-
-        return $response;
     }
 }
