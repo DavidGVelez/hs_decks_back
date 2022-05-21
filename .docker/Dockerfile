@@ -17,6 +17,10 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-enable exif \
     && docker-php-source delete
 
+RUN pecl install -o -f redis \
+    &&  rm -rf /tmp/pear \
+    &&  docker-php-ext-enable redis
+
 COPY .docker/vhost.conf /etc/apache2/sites-available/000-default.conf
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
