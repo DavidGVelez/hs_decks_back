@@ -1,16 +1,13 @@
 <?php
 
-namespace App\Services;
+namespace App\Repositories\Bnet;
 
 use App\Helpers\CommonHelper;
-use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
 use Throwable;
 
-class BnetService
+class BnetRepository
 {
-
-
     protected $helper;
 
     public function __construct()
@@ -20,6 +17,7 @@ class BnetService
 
     public function refreshToken()
     {
+        // * Todo: Use Guzzle
         try {
             $ch = curl_init();
 
@@ -38,9 +36,8 @@ class BnetService
 
             $response = json_decode($response);
 
-            Log::info('BnetService', ["message" => 'Bnet token response', 'response' => $response]);
-            // Set token to cache
-            Cache::set('BnetToken', $response->access_token, $response->expires_in);
+            Log::info('BnetRepository', ["message" => 'Bnet token response', 'response' => $response]);
+
             return $response;
         } catch (Throwable $e) {
             return $e;

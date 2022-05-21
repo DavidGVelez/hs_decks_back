@@ -2,27 +2,26 @@
 
 namespace App\Http\Controllers;
 
-use App\Repositories\CardRepository;
-
+use App\Services\Bnet\CardService;
 
 class CardController extends Controller
 {
-    protected $repository;
+    protected $cardService;
 
 
-    public function __construct(CardRepository $card)
+    public function __construct(CardService $cardService)
     {
-        $this->repository = $card;
+        $this->cardService = $cardService;
     }
 
 
     public function find_one($id)
     {
-        return $this->repository->findOneById($id);
+        return $this->cardService->findOneById($id);
     }
 
     public function find_all()
     {
-        return $this->repository->findAll();
+        return $this->cardService->findAll();
     }
 }
