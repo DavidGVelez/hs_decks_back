@@ -13,6 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('', function () {
+    return response()->json('Ok', 200);
+});
+
 Route::get('/ping', function () {
     return response()->json('Pong', 200);
 });
