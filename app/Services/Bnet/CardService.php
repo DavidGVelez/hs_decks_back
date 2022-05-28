@@ -4,6 +4,7 @@ namespace App\Services\Bnet;
 
 use App\Repositories\Bnet\CardRepository;
 
+
 class CardService
 {
     protected $cardRepository;
@@ -12,7 +13,6 @@ class CardService
     {
         $this->cardRepository = $cardRepository;
     }
-
 
     public function findOneById($id)
     {

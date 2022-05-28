@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\CardResource;
 use App\Services\Bnet\CardService;
 
 class CardController extends Controller
@@ -17,7 +18,7 @@ class CardController extends Controller
 
     public function find_one($id)
     {
-        return $this->cardService->findOneById($id);
+        return new CardResource($this->cardService->findOneById($id));
     }
 
     public function find_all()

@@ -17,7 +17,7 @@ Route::get('/ping', function () {
     return response()->json('Pong', 200);
 });
 
-Route::prefix('bnet')->middleware('bnet')->group(function () {
+Route::prefix('bnet')->middleware(['bnet'])->group(function () {
 
     Route::group(['prefix' => '/cards'], function () {
 
@@ -31,5 +31,12 @@ Route::prefix('bnet')->middleware('bnet')->group(function () {
         Route::get('/', 'CardbackController@find_all');
 
         Route::get('/{idOrSlug}', 'CardbackController@find_one');
+    });
+
+    Route::group(['prefix' => '/metadata'], function () {
+
+        Route::get('/', 'MetadataController@find_all');
+
+        Route::get('/{type}', 'MetadataController@find_by_type');
     });
 });
