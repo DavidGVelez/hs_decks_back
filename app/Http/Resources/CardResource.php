@@ -20,7 +20,9 @@ class CardResource extends JsonResource
     {
 
         $metadataService = new MetadataService(new MetadataRepository);
-        return [
+
+        // * Those are common params to all cards
+        $params = [
             "id" => $this->id,
             "name" => $this->name,
             "text" => $this->text,
@@ -34,9 +36,27 @@ class CardResource extends JsonResource
             "flavor" => $this->flavorText,
             "image" => $this->image,
             "imageGold" => $this->imageGold,
-            "keywords" =>  $metadataService->getKeywords($this->keywordIds),
             "manaCost" => $this->manaCost,
-            "spellSchool" =>  $metadataService->getSpellSchool($this->spellSchoolId)
+
         ];
+        //* Specific params 
+
+        if (isset($this->keywordIds)) {
+            $params["keywords"] = $metadataService->getKeywords($this->keywordIds);
+        }
+
+        if (isset($this->spellSchoolId)) {
+            $params["spellSchool"] = $metadataService->getSpellSchool($this->spellSchoolId);
+        }
+        if (isset($this->minionTypeId)) {
+            $params["minionType"] = $metadataService->getMinionType($this->minionTypeId);
+        }
+
+        if (isset($this->childIds)) {
+            $params["relatedCards"] = $this->childIds;
+        }
+
+
+        return $params;
     }
 }
